@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhập thông tin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Nhập thông tin</h1>
+    </div>
+
+    <div class="container">
+        <div class="nav">
+            <a href="{{ url_for('home') }}">Trang chủ</a>
+            <a href="{{ url_for('input_user') }}">Nhập thông tin</a>
+            <a href="{{ url_for('view_users') }}">Xem thông tin</a>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="form-container">
+            <form method="POST">
+                <div class="form-group">
+                    <label for="name">Họ và tên:</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cmnd">Số CMND:</label>
+                    <input type="text" id="cmnd" name="cmnd" class="form-control" required maxlength="12" pattern="[0-9]{1,12}" title="Tối đa 12 số">
+                </div>
+
+                <div class="form-group">
+                    <label for="social_insurance">Mã số bảo hiểm xã hội:</label>
+                    <input type="text" id="social_insurance" name="social_insurance" class="form-control" required maxlength="10" pattern="[0-9]{10}" title="Đúng 10 số">
+                </div>
+
+                <div class="form-group">
+                    <label for="bank_account">Số tài khoản ngân hàng:</label>
+                    <input type="text" id="bank_account" name="bank_account" class="form-control" required maxlength="32" pattern="[0-9]{1,32}" title="Từ 1 đến 32 số">
+                </div>
+
+                <div class="form-group">
+                    <label for="bank_name">Tên ngân hàng:</label>
+                    <input type="text" id="bank_name" name="bank_name" class="form-control" required>
+                </div>
+
+                <div style="text-align: center;">
+                    <button type="submit" class="btn btn-primary">Lưu thông tin</button>
+                    <a href="{{ url_for('logout') }}" class="btn btn-danger btn-lg rounded-pill" style="font-weight:bold;">
+                        <i class="bi bi-box-arrow-right"></i> Đăng xuất
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

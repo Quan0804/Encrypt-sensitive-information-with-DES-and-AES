@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Sửa thông tin cá nhân</h2>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="card">
+        <div class="card-body">
+            <form method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Họ và tên:</label>
+                    <input type="text" class="form-control" value="{{ user.name }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Số CCCD/CMND:</label>
+                    <input type="text" name="cmnd" class="form-control" value="{{ user.cmnd }}" required>
+                    <div class="form-text">Số CCCD/CMND phải là số và tối đa 12 số.</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Mã số BHXH:</label>
+                    <input type="text" name="social_insurance" class="form-control" value="{{ user.social_insurance }}" required>
+                    <div class="form-text">Mã số BHXH phải là số và đúng 10 số.</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Số tài khoản ngân hàng:</label>
+                    <input type="text" name="bank_account" class="form-control" value="{{ user.bank_account }}" required>
+                    <div class="form-text">Số tài khoản ngân hàng phải là số và từ 1 đến 32 số.</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Tên ngân hàng:</label>
+                    <input type="text" name="bank_name" class="form-control" value="{{ user.bank_name }}" required>
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                    <a href="{{ url_for('user_profile') }}" class="btn btn-secondary">Hủy</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %} 

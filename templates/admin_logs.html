@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Lịch sử truy cập & thay đổi thông tin</h2>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Thời gian</th>
+                            <th>Ai</th>
+                            <th>Hành động</th>
+                            <th>Chi tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for log in logs %}
+                            {% set time = log.split(' - ')[0] %}
+                            {% set rest = log.split(' - ', 2)[-1] %}
+                            {% if '[ADMIN]' in rest %}
+                                {% set who = 'ADMIN' %}
+                            {% elif 'Người dùng' in rest %}
+                                {% set who = rest.split(' ')[2] %}
+                            {% else %}
+                                {% set who = '' %}
+                            {% endif %}
+                            {% if 'Sửa thông tin' in rest %}
+                                {% set action = 'Sửa' %}
+                            {% elif 'Xoá thông tin' in rest or 'Đã xóa' in rest %}
+                                {% set action = 'Xóa' %}
+                            {% elif 'thêm' in rest %}
+                                {% set action = 'Thêm' %}
+                            {% elif 'truy cập' in rest %}
+                                {% set action = 'Truy cập' %}
+                            {% else %}
+                                {% set action = 'Khác' %}
+                            {% endif %}
+                            <tr>
+                                <td>{{ time }}</td>
+                                <td>{{ who }}</td>
+                                <td>{{ action }}</td>
+                                <td style="max-width:400px; white-space:pre-wrap; word-break:break-all;">{{ rest }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <a href="{{ url_for('view_users') }}" class="btn btn-secondary mt-3">Quay lại quản trị</a>
+</div>
+{% endblock %} 

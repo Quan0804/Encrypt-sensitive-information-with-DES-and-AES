@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Thông tin cá nhân</h2>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <div class="card">
+        <div class="card-body">
+            <form method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Họ và tên:</label>
+                    <input type="text" class="form-control" value="{{ user.name }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Số CCCD/CMND:</label>
+                    <input type="text" class="form-control" value="{{ user.cmnd if user.cmnd else '********' }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Mã số BHXH:</label>
+                    <input type="text" class="form-control" value="{{ user.social_insurance if user.social_insurance else '********' }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Số tài khoản ngân hàng:</label>
+                    <input type="text" class="form-control" value="{{ user.bank_account if user.bank_account else '********' }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Tên ngân hàng:</label>
+                    <input type="text" class="form-control" value="{{ user.bank_name }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Ngày tạo:</label>
+                    <input type="text" class="form-control" value="{{ user.created_at }}" readonly>
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">Xem thông tin</button>
+                    <a href="{{ url_for('user_edit') }}" class="btn btn-warning">Sửa thông tin</a>
+                    <a href="{{ url_for('user_logout') }}" class="btn btn-secondary">Đăng xuất</a>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                        Xóa tài khoản
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xác nhận xóa tài khoản</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa tài khoản của mình? Hành động này không thể hoàn tác.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <form action="{{ url_for('user_delete') }}" method="POST" class="d-inline">
+                    <button type="submit" class="btn btn-danger">Xóa tài khoản</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

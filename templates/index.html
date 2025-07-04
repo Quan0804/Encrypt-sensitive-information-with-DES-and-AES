@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <h1 class="display-4 mb-4">Chào mừng đến với Hệ thống Lưu trữ Thông tin</h1>
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">Vui lòng chọn một trong các tùy chọn sau:</h5>
+                    <div class="d-grid gap-3">
+                        <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">Đăng nhập người dùng</a>
+                        <a href="{{ url_for('admin_login') }}" class="btn btn-danger btn-lg">Đăng nhập admin</a>
+                        <a href="{{ url_for('input_user') }}" class="btn btn-success btn-lg">Đăng ký tài khoản mới</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

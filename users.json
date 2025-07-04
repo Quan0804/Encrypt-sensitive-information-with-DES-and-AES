@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Vu Quan",
+    "cmnd_encrypted": "+fX7fPAvXXlhlIpwFa6S3W2dnSAxC9ta",
+    "social_insurance_encrypted": "6ZOZZs+ks6v7Q6ZBenOlCp0CVgThKpFuVlyrFbIcVzM=",
+    "bank_account_encrypted": "RrR2Ai5FchRzrEZ4909URGTAWm25pE4eIKyjNjvv63U=",
+    "bank_name": "MbBank",
+    "created_at": "2025-06-06 10:31:30"
+  },
+  {
+    "name": "Nguyen Dang",
+    "cmnd_encrypted": "m5itVgdgNSGVr3WPr9fi5CU4ztw0znqW",
+    "social_insurance_encrypted": "TYSs6XtUQKghT9ZQTCW0e9r5cV/dReIZqf0HCW5TGXY=",
+    "bank_account_encrypted": "ZvtrecknAbBcV3ln317+gngENTX47Rb4DxO0xnj2PCw=",
+    "bank_name": "VpBank",
+    "created_at": "2025-06-06 11:01:37"
+  },
+  {
+    "name": "Dang Quan",
+    "cmnd_encrypted": "hrmW7WZRALre6YBbsXLfaFNpBUasWMwr",
+    "social_insurance_encrypted": "zWqXcWF2R6qb1D2xX9FfDZiAWqNiWPdM61ThjFEU0j4=",
+    "bank_account_encrypted": "ez2V46Uf8Ws9dpvnfMbdlXdT68eAENoSbEK3Um8kDUM=",
+    "bank_name": "TpBank",
+    "created_at": "2025-06-09 10:24:36"
+  }
+]

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiết người dùng</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-header bg-success text-white">
+                        <h4 class="mb-0">Chi tiết người dùng</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Họ tên:</strong> {{ user.name }}</li>
+                            <li class="list-group-item"><strong>Số CMND:</strong> {{ user.cmnd }}</li>
+                            <li class="list-group-item"><strong>Mã số BHXH:</strong> {{ user.social_insurance }}</li>
+                            <li class="list-group-item"><strong>Số tài khoản:</strong> {{ user.bank_account }}</li>
+                            <li class="list-group-item"><strong>Tên ngân hàng:</strong> {{ user.bank_name }}</li>
+                            <li class="list-group-item"><strong>Ngày tạo:</strong> {{ user.created_at }}</li>
+                        </ul>
+                        <a href="{{ url_for('view_users') }}" class="btn btn-secondary mt-3">Quay lại</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
